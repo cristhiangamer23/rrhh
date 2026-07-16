@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Buenos Aires RP | Panel RRHH</title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<div class="logo-icon">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+</div>
+
+<h2>
+
+Buenos Aires RP
+
+</h2>
+
+<p>
+
+Panel RRHH
+
+</p>
+
+</div>
+
+<nav>
+
+<button class="menu active">
+
+<i class="fa-solid fa-house"></i>
+
+<span>Dashboard</span>
+
+</button>
+
+<button class="menu">
+
+<i class="fa-solid fa-file-lines"></i>
+
+<span>Postulaciones</span>
+
+</button>
+
+<button class="menu">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+<span>Convocatorias</span>
+
+</button>
+
+<button class="menu">
+
+<i class="fa-solid fa-users"></i>
+
+<span>Usuarios</span>
+
+</button>
+
+<button class="menu">
+
+<i class="fa-solid fa-building-shield"></i>
+
+<span>Facciones</span>
+
+</button>
+
+<button class="menu">
+
+<i class="fa-solid fa-chart-column"></i>
+
+<span>Estadísticas</span>
+
+</button>
+
+<button class="menu">
+
+<i class="fa-solid fa-gear"></i>
+
+<span>Configuración</span>
+
+</button>
+
+</nav>
+
+<div class="sidebar-footer">
+
+<button id="logout">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Cerrar sesión
+
+</button>
+
+</div>
+
+</aside>
+
+<!-- ================= CONTENIDO ================= -->
+
+<main class="content">
+
+<header class="topbar">
+
+<div>
+
+<h1>
+
+Panel de Recursos Humanos
+
+</h1>
+
+<p>
+
+Sistema Oficial Buenos Aires RP
+
+</p>
+
+</div>
+
+<div class="perfil">
+
+<img
+
+src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-Png/150/150/AvatarHeadshot/Webp/noFilter"
+
+id="avatar"
+
+alt="Avatar"
+
+>
+
+<div>
+
+<h3 id="nombreUsuario">
+
+Administrador
+
+</h3>
+
+<span id="rolUsuario">
+
+Owner
+
+</span>
+
+</div>
+
+</div>
+
+</header>
+
+<section class="cards">
+
+<div class="card">
+
+<i class="fa-solid fa-file-circle-check"></i>
+
+<h2 id="totalPostulaciones">
+
+0
+
+</h2>
+
+<p>
+
+Postulaciones
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-hourglass-half"></i>
+
+<h2 id="revision">
+
+0
+
+</h2>
+
+<p>
+
+En revisión
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-circle-check"></i>
+
+<h2 id="aceptadas">
+
+0
+
+</h2>
+
+<p>
+
+Aceptadas
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-circle-xmark"></i>
+
+<h2 id="rechazadas">
+
+0
+
+</h2>
+
+<p>
+
+Rechazadas
+
+</p>
+
+</div>
+
+</section>
+
+<section class="welcome">
+
+<h2>
+
+Bienvenido al Panel RRHH
+
+</h2>
+
+<p>
+
+Desde este sistema podrás administrar todas las postulaciones del servidor, gestionar convocatorias oficiales y supervisar el estado de cada solicitud enviada desde la página de Odoo.
+
+</p>
+
+</section>
+
+<section class="panel-box">
+
+<h2>
+
+Actividad reciente
+
+</h2>
+
+<p>
+
+Aquí aparecerán las últimas acciones realizadas por Recursos Humanos.
+
+</p>
+
+<div id="actividad">
+</div>
+
+</section>
+
+<section class="panel-box">
+
+<div class="panel-header">
+
+<h2>
+
+📋 Gestión de Postulaciones
+
+</h2>
+
+<div class="panel-actions">
+
+<input
+type="text"
+id="buscarPostulacion"
+placeholder="Buscar código, usuario o convocatoria..."
+>
+
+<select id="filtroEstado">
+
+<option value="">
+
+Todos los estados
+
+</option>
+
+<option value="revision">
+
+En revisión
+
+</option>
+
+<option value="aceptado">
+
+Aceptado
+
+</option>
+
+<option value="rechazado">
+
+Rechazado
+
+</option>
+
+<option value="cancelado">
+
+Cancelado
+
+</option>
+
+</select>
+
+<button id="actualizar">
+
+<i class="fa-solid fa-rotate"></i>
+
+Actualizar
+
+</button>
+
+</div>
+
+</div>
+
+<table class="tabla">
+
+<thead>
+
+<tr>
+
+<th>
+
+Código
+
+</th>
+
+<th>
+
+Usuario
+
+</th>
+
+<th>
+
+Convocatoria
+
+</th>
+
+<th>
+
+Fecha
+
+</th>
+
+<th>
+
+Estado
+
+</th>
+
+<th>
+
+Acciones
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="tablaPostulaciones">
+
+<tr>
+
+<td>
+
+BARP-000001
+
+</td>
+
+<td>
+
+CristhianYSuga
+
+</td>
+
+<td>
+
+Staff
+
+</td>
+
+<td>
+
+15/07/2026
+
+</td>
+
+<td>
+
+<span class="estado revision">
+
+En revisión
+
+</span>
+
+</td>
+
+<td>
+
+<div class="acciones">
+
+<button class="btn-ver">
+
+<i class="fa-solid fa-eye"></i>
+
+</button>
+
+<button class="btn-aceptar">
+
+<i class="fa-solid fa-check"></i>
+
+</button>
+
+<button class="btn-rechazar">
+
+<i class="fa-solid fa-xmark"></i>
+
+</button>
+
+<button class="btn-pendiente">
+
+<i class="fa-solid fa-clock"></i>
+
+</button>
+
+</div>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+<section class="panel-box">
+
+<h2>
+
+📝 Historial del Sistema
+
+</h2>
+
+<div class="timeline">
+
+<div class="timeline-item">
+
+<div class="timeline-icon">
+
+<i class="fa-solid fa-user-plus"></i>
+
+</div>
+
+<div class="timeline-content">
+
+<h3>
+
+Nueva postulación recibida
+
+</h3>
+
+<p>
+
+El usuario CristhianYSuga envió una solicitud para Staff.
+
+</p>
+
+<span>
+
+Hace unos segundos
+
+</span>
+
+</div>
+
+</div>
+
+<div class="timeline-item">
+
+<div class="timeline-icon">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+</div>
+
+<div class="timeline-content">
+
+<h3>
+
+Convocatoria abierta
+
+</h3>
+
+<p>
+
+Se habilitó una nueva convocatoria para Recursos Humanos.
+
+</p>
+
+<span>
+
+Hoy
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+</main>
+
+</div>
+
+<!-- ================= MODAL POSTULACIÓN ================= -->
+
+<div id="modalPostulacion" class="modal">
+
+<div class="modal-content">
+
+<div class="modal-header">
+
+<h2>
+
+📄 Información de la Postulación
+
+</h2>
+
+<button id="cerrarModal">
+
+<i class="fa-solid fa-xmark"></i>
+
+</button>
+
+</div>
+
+<div class="modal-body">
+
+<div class="info-grid">
+
+<div class="info-item">
+
+<strong>Código</strong>
+
+<span id="codigoPostulacion">
+
+BARP-000001
+
+</span>
+
+</div>
+
+<div class="info-item">
+
+<strong>Usuario</strong>
+
+<span id="usuarioPostulacion">
+
+CristhianYSuga
+
+</span>
+
+</div>
+
+<div class="info-item">
+
+<strong>Convocatoria</strong>
+
+<span id="convocatoriaPostulacion">
+
+Staff
+
+</span>
+
+</div>
+
+<div class="info-item">
+
+<strong>Estado</strong>
+
+<span id="estadoPostulacion">
+
+En revisión
+
+</span>
+
+</div>
+
+</div>
+
+<h3>
+
+Respuestas del formulario
+
+</h3>
+
+<div id="respuestasFormulario" class="respuestas">
+
+<p>
+
+Aquí aparecerán automáticamente las aproximadamente 50 respuestas enviadas desde Odoo cuando el sistema esté conectado con la API de Render.
+
+</p>
+
+</div>
+
+<h3>
+
+Observaciones internas
+
+</h3>
+
+<textarea
+id="observaciones"
+placeholder="Escribe observaciones visibles únicamente para RRHH..."
+></textarea>
+
+</div>
+
+<div class="modal-footer">
+
+<button class="btn-pendiente">
+
+<i class="fa-solid fa-clock"></i>
+
+Pendiente
+
+</button>
+
+<button class="btn-aceptar">
+
+<i class="fa-solid fa-check"></i>
+
+Aceptar
+
+</button>
+
+<button class="btn-rechazar">
+
+<i class="fa-solid fa-xmark"></i>
+
+Rechazar
+
+</button>
+
+<button class="btn-cancelar">
+
+<i class="fa-solid fa-trash"></i>
+
+Cancelar
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="/js/panel.js"></script>
+
+</body>
+
+</html>
