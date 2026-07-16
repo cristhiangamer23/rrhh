@@ -1,0 +1,17 @@
+{
+  "name": "barp-rrhh",
+  "version": "1.0.0",
+  "description": "Panel Recursos Humanos Buenos Aires RP",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.0",
+    "express-session": "^1.18.1",
+    "pg": "^8.13.1"
+  }
+}
