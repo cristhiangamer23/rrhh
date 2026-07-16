@@ -242,6 +242,7 @@ class="mensaje"
 >
 
 </div>
+
 <div class="login-footer">
 
 <div class="status">
@@ -274,99 +275,7 @@ Versión 1.0 • Panel Oficial RRHH
 
 </div>
 
-<script>
-
-const form=document.getElementById("loginForm");
-
-form.addEventListener("submit",async(e)=>{
-
-e.preventDefault();
-
-const usuario=document.getElementById("usuario").value;
-
-const password=document.getElementById("password").value;
-
-const mensaje=document.getElementById("mensaje");
-
-mensaje.innerHTML="";
-
-try{
-
-const respuesta=await fetch("/login",{
-
-method:"POST",
-
-headers:{
-
-"Content-Type":"application/json"
-
-},
-
-body:JSON.stringify({
-
-usuario,
-
-password
-
-})
-
-});
-
-const datos=await respuesta.json();
-
-if(datos.ok){
-
-mensaje.style.color="#00ff88";
-
-mensaje.innerHTML='<i class="fa-solid fa-circle-check"></i> Acceso concedido...';
-
-setTimeout(()=>{
-
-location.href="/panel";
-
-},800);
-
-}else{
-
-mensaje.style.color="#ff5555";
-
-mensaje.innerHTML='<i class="fa-solid fa-circle-xmark"></i> '+datos.error;
-
-}
-
-}catch{
-
-mensaje.style.color="#ff5555";
-
-mensaje.innerHTML='<i class="fa-solid fa-triangle-exclamation"></i> No se pudo conectar con el servidor.';
-
-}
-
-});
-
-function togglePassword(){
-
-const input=document.getElementById("password");
-
-const icon=document.querySelector(".show-password i");
-
-if(input.type==="password"){
-
-input.type="text";
-
-icon.className="fa-solid fa-eye-slash";
-
-}else{
-
-input.type="password";
-
-icon.className="fa-solid fa-eye";
-
-}
-
-}
-
-</script>
+<script src="/js/app.js"></script>
 
 </body>
 
